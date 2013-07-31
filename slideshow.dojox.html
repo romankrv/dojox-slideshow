@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <script>dojoConfig = {async: true, parseOnLoad: false}</script>
+  <script src="http://yandex.st/dojo/1.9.1/dojo/dojo.js"></script>
+  <link rel="stylesheet" href="http://yandex.st/dojo/1.9.1/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="http://yandex.st/dojo/1.9.1/dojox/image/resources/image.css">
+  <script>
+    require(["dojo/parser",
+             "dojo/dom", 
+             "dijit/registry", 
+             "dojox/image/SlideShow", 
+             "dojox/data/FlickrRestStore", 
+             "dojo/domReady!"],
+      function(parser, dom, registry) {  
+        parser.parse();
+        var flickrRestStore = new dojox.data.FlickrRestStore();
+        var req = {
+          query: {
+            userid: "44153025@N00",
+            apikey: "8c6803164dbc395fb7131c9d54843627"
+          },
+          count: 20
+        };
+        registry.byId('slideshow2').setDataStore(flickrRestStore, req);
+    });
+  </script>
+</head>
+<body class="claro">
+<h2>from dojox.data.FlickrRestStore</h2>
+This SlideShow should display five photos, and not loop. It should also not
+open a URL when the image is clicked.  AutoLoading of images is also disabled.
+The time between images in a SlideShow is 1 second.  The widget should not resize to fit the image
+<div id="slideshow2" data-dojo-type="dojox/image/SlideShow" 
+     data-dojo-props="noLink:true,
+                      loop:false,
+                      autoStart:true,
+                      autoLoad:false,
+                      slideshowInterval:1,
+                      fixedHeight:true">
+</div>
+</body>
+</html>
